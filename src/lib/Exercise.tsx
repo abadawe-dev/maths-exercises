@@ -39,8 +39,10 @@ const MathField: React.FC<{
     });
   };
   const state = verdict ? (verdict.ok ? 'right' : 'wrong') : '';
+  // Plain numbers need neither a typeset preview nor the symbol keys: keep those fields compact.
+  const compact = field.rule === 'number';
   return (
-    <div className={`field ${state}`}>
+    <div className={`field ${state} ${compact ? 'compact' : ''}`}>
       <label htmlFor={id} className="field-label">
         {field.label ? <Rich text={field.label} /> : 'Answer'}
       </label>
@@ -60,6 +62,7 @@ const MathField: React.FC<{
           onKeyDown={(e) => e.key === 'Enter' && onEnter()}
           aria-invalid={state === 'wrong'}
         />
+        {compact ? null : (
         <div className="preview" aria-live="polite">
           {value.trim() === '' ? (
             <span className="muted">preview</span>
@@ -69,8 +72,9 @@ const MathField: React.FC<{
             <span className="muted">…</span>
           )}
         </div>
+        )}
       </div>
-      {!disabled ? (
+      {!disabled && !compact ? (
         <div className="keypad" aria-label="Symbol keys">
           {KEYS.map(([label, snippet]) => (
             <button key={label} type="button" tabIndex={-1} onClick={() => insert(snippet)}>
@@ -234,7 +238,7 @@ const ProofBody: React.FC<{ex: ProofExercise; onSolved: () => void}> = ({ex, onS
               </button>
             ))}
           </div>
-          {wrong.length ? <p className="verdict wrong">✗ That line does not follow. Try another.</p> : null}
+          {wrong.length ? <p className="verdict wrong">✗ Not that line. Try another.</p> : null}
         </div>
       )}
     </div>

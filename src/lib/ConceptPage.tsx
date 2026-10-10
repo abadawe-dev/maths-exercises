@@ -5,7 +5,7 @@ import {isSolved, resetConcept, useSolved} from './progress';
 import {Rich} from './Tex';
 import type {Concept, Lesson} from './types';
 
-const LessonSection: React.FC<{concept: Concept; lesson: Lesson; offset: number}> = ({concept, lesson, offset}) => (
+const LessonSection: React.FC<{concept: Concept; lesson: Lesson}> = ({concept, lesson}) => (
   <section className="lesson" id={`lesson-${lesson.id}`}>
     <header className="lesson-head">
       <span className="lesson-badge">{lesson.id}</span>
@@ -48,7 +48,7 @@ const LessonSection: React.FC<{concept: Concept; lesson: Lesson; offset: number}
     <h3 className="exercises-title">Exercises</h3>
     <div className="exercises">
       {lesson.exercises.map((ex, i) => (
-        <ExerciseCard key={ex.id} conceptId={concept.id} ex={ex} index={offset + i + 1} />
+        <ExerciseCard key={ex.id} conceptId={concept.id} ex={ex} index={i + 1} />
       ))}
     </div>
   </section>
@@ -60,7 +60,6 @@ export const ConceptPage: React.FC<{concept: Concept; all: Concept[]}> = ({conce
   const i = all.indexOf(concept);
   const prev = all[i - 1];
   const next = all[i + 1];
-  let offset = 0;
   return (
     <main className="concept" data-accent={concept.accent}>
       <nav className="topbar" aria-label="Breadcrumb">
@@ -94,11 +93,9 @@ export const ConceptPage: React.FC<{concept: Concept; all: Concept[]}> = ({conce
         })}
       </nav>
 
-      {concept.lessons.map((l) => {
-        const el = <LessonSection key={l.id} concept={concept} lesson={l} offset={offset} />;
-        offset += l.exercises.length;
-        return el;
-      })}
+      {concept.lessons.map((l) => (
+        <LessonSection key={l.id} concept={concept} lesson={l} />
+      ))}
 
       <nav className="pager" aria-label="Other concepts">
         {prev ? (

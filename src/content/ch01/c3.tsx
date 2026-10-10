@@ -1,4 +1,9 @@
 import type {Concept} from '../../lib/types';
+import {CancelGame, CompoundPeeler, DenominatorBuilder} from './c3.widgets';
+
+const T = String.raw;
+/** A factor with a pink cancel line through it. */
+const X = (s: string) => T`\textcolor{#ff6b9d}{\cancel{\textcolor{#f4f6ff}{` + s + '}}}';
 
 export const c3: Concept = {
   id: 'rational',
@@ -6,5 +11,744 @@ export const c3: Concept = {
   title: 'Rational Expressions',
   tagline: 'Reduce, multiply, divide, add and subtract algebraic fractions, and untangle compound fractions.',
   accent: 'green',
-  lessons: [],
+  lessons: [
+    // ------------------------------------------------------------------------------------ 1-6
+    {
+      id: '1-6',
+      title: 'Multiplication and Division of Rational Expressions',
+      blurb: 'Factorise, then cancel the factors that the top and the bottom have in common. Dividing is multiplying by the reciprocal.',
+      ideas: [
+        {
+          title: 'Reduce by a common factor',
+          body: [
+            'Dividing the numerator and the denominator by a **common factor** is called **reducing**. When nothing more cancels, the expression is **irreducible**.',
+            '$$\\frac{(x-1)' + X('(x-3)') + '}{x' + X('(x-3)') + '}=\\frac{x-1}{x}$$',
+            T`Common factors are usually hidden, so **factorise** first: $\dfrac{x^2-4}{3x^2+7x+2}=\dfrac{(x+2)(x-2)}{(3x+1)(x+2)}$.`,
+          ],
+        },
+        {
+          title: 'Cancel factors, never terms',
+          body: [
+            T`In $\dfrac{x+6}{x+2}$ the $x$’s are **terms**, joined on with a plus sign. Crossing them out would give $3$, but at $x=2$ the value is $\dfrac84=2$.`,
+            T`In $\dfrac{6x}{2x}$ the $x$’s are **factors**, so cancelling is fine: the answer is $3$.`,
+          ],
+        },
+        {
+          title: 'Multiply and divide',
+          body: [
+            'To divide, multiply by the reciprocal of the divisor:',
+            T`$$\frac{A}{B}\div\frac{C}{D}=\frac{A}{B}\times\frac{D}{C}$$`,
+            'Then factorise all four parts and cancel. Leave the answer in brackets: do not expand.',
+          ],
+        },
+      ],
+      widget: {
+        title: 'Cancel the common factor',
+        blurb: 'Each expression is already factorised. Tap a factor on top and the identical one underneath to cancel the pair, until the expression is irreducible.',
+        Component: CancelGame,
+      },
+      exercises: [
+        {
+          id: 'cancel-terms',
+          type: 'choice',
+          level: 'warmup',
+          source: 'Lesson 1-6 · Common Mistakes',
+          prompt: T`A student crosses out the two $x$’s in $\dfrac{x+6}{x+2}$ and writes $\dfrac{6}{2}=3$. Which statement is correct?`,
+          options: [
+            T`The working is right: the expression equals $3$.`,
+            T`It is wrong: here $x$ is a term, not a factor. $\dfrac{x+6}{x+2}$ is already irreducible.`,
+            T`It is wrong: the 2 should be cancelled into the 6 instead, giving $\dfrac{x+3}{x+1}$.`,
+            T`It is wrong: each crossed-out $x$ leaves a 1, so the answer is $\dfrac{7}{3}$.`,
+          ],
+          correct: 1,
+          feedback: [
+            T`Test it with a number: at $x=2$ the expression is $\frac{8}{4}=2$, not $3$.`,
+            'Only a factor of the whole numerator and of the whole denominator can be cancelled.',
+            T`The 2 is also only a term. At $x=2$ the original is $2$, but $\frac{x+3}{x+1}=\frac53$.`,
+            T`A cancelled factor does leave 1, but $x$ is not a factor of $x+6$ or of $x+2$.`,
+          ],
+          solution: [
+            T`In $x+6$ and $x+2$ the $x$ is added, not multiplied, so it is a term and cannot be cancelled.`,
+            T`Check with $x=2$: $\dfrac{2+6}{2+2}=2\neq3$. The numerator and denominator have no common factor, so $\dfrac{x+6}{x+2}$ is irreducible.`,
+          ],
+        },
+        {
+          id: 'try-1a',
+          type: 'input',
+          level: 'warmup',
+          source: 'Lesson 1-6 · Try 1(a)',
+          prompt: T`Simplify $\dfrac{6x^2y^3}{20x^3y}$.`,
+          fields: [{key: 'v', answer: '3y^2/(10x)', rule: 'simplified', placeholder: 'e.g. 3y^2/(10x)'}],
+          hints: [
+            'Deal with the numbers, the $x$’s and the $y$’s one at a time.',
+            T`6 and 20 share the factor 2. $x^2$ cancels with part of $x^3$, and $y$ cancels with part of $y^3$.`,
+          ],
+          solution: [
+            T`$$\frac{6x^2y^3}{20x^3y}=\frac{2\times3\times x^2\times y\times y^2}{2\times10\times x^2\times x\times y}$$`,
+            T`Cancel the common factors $2$, $x^2$ and $y$: $$\frac{3y^2}{10x}$$`,
+          ],
+        },
+        {
+          id: 'try-1b-guided',
+          type: 'proof',
+          level: 'warmup',
+          source: 'Lesson 1-6 · Try 1(b)',
+          prompt: T`Simplify $\dfrac{2x^2-3x-5}{x^2+3x+2}$, one step at a time.`,
+          steps: [
+            {
+              goal: 'Factorise the numerator.',
+              options: [T`$2x^2-3x-5=(2x-5)(x+1)$`, T`$2x^2-3x-5=(2x+5)(x-1)$`, T`$2x^2-3x-5=(2x-1)(x+5)$`],
+              correct: 0,
+              why: T`Check by expanding: $2x^2+2x-5x-5$.`,
+            },
+            {
+              goal: 'Factorise the denominator.',
+              options: [T`$x^2+3x+2=(x+1)(x+2)$`, T`$x^2+3x+2=(x-1)(x-2)$`, T`$x^2+3x+2=(x+3)(x-1)$`],
+              correct: 0,
+              why: 'Two numbers that multiply to 2 and add to 3.',
+            },
+            {
+              goal: 'Cancel what the top and the bottom have in common.',
+              options: [
+                '$\\dfrac{(2x-5)' + X('(x+1)') + '}{' + X('(x+1)') + '(x+2)}$',
+                '$\\dfrac{(2' + X('x') + '-5)(x+1)}{(x+1)(' + X('x') + '+2)}$',
+                'Nothing cancels: it is already irreducible.',
+              ],
+              correct: 0,
+              why: T`$(x+1)$ is a factor of both. The $x$ inside a bracket is only a term.`,
+            },
+            {
+              goal: 'Write the irreducible result.',
+              options: [T`$\dfrac{2x-5}{x+2}$`, T`$\dfrac{x+2}{2x-5}$`, T`$\dfrac{2x-5}{x+1}$`],
+              correct: 0,
+            },
+          ],
+          hints: [T`For $2x^2-3x-5$ try $(2x\ \ldots)(x\ \ldots)$ with numbers that multiply to $-5$.`],
+          solution: [
+            T`$$\frac{2x^2-3x-5}{x^2+3x+2}=\frac{(2x-5)(x+1)}{(x+1)(x+2)}$$`,
+            T`Cancel the common factor $(x+1)$: $$\frac{2x-5}{x+2}$$`,
+          ],
+        },
+        {
+          id: 'ex-1d',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-6 · Exercise 1(d)',
+          prompt: T`Simplify $\dfrac{x^2+x-2}{x^2-5x+4}$.`,
+          fields: [{key: 'v', answer: '(x+2)/(x-4)', rule: 'simplified', placeholder: 'e.g. (x+1)/(x-3)'}],
+          hints: [T`Factorise both: $x^2+x-2=(x+2)(x-1)$.`, T`$x^2-5x+4=(x-1)(x-4)$, so $(x-1)$ is common.`],
+          solution: [T`$$\frac{x^2+x-2}{x^2-5x+4}=\frac{(x+2)(x-1)}{(x-1)(x-4)}$$`, T`Cancel the common factor $(x-1)$: $$\frac{x+2}{x-4}$$`],
+        },
+        {
+          id: 'try-2a',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-6 · Try 2(a)',
+          prompt: T`Calculate $\dfrac{x^2-11x+24}{x^2-6x-16}\times\dfrac{x^2+2x}{x^2-6x+9}$.`,
+          fields: [{key: 'v', answer: 'x/(x-3)', rule: 'simplified', placeholder: 'a single fraction'}],
+          hints: [
+            'Factorise all four parts before multiplying anything.',
+            T`$x^2-11x+24=(x-3)(x-8)$ and $x^2-6x-16=(x-8)(x+2)$.`,
+            T`$x^2+2x=x(x+2)$ and $x^2-6x+9=(x-3)^2$. Three pairs cancel.`,
+          ],
+          solution: [
+            T`$$\frac{(x-3)(x-8)}{(x-8)(x+2)}\times\frac{x(x+2)}{(x-3)(x-3)}$$`,
+            T`Cancel $(x-8)$, $(x+2)$ and one $(x-3)$: $$\frac{x}{x-3}$$`,
+          ],
+        },
+        {
+          id: 'flip-first',
+          type: 'choice',
+          level: 'practice',
+          source: 'Lesson 1-6 · Try 2(b)',
+          prompt: T`Which is the correct first step for $\dfrac{x^2-9}{x^2-x-2}\div\dfrac{2x^2+5x-3}{x+1}$ ?`,
+          options: [
+            T`$\dfrac{x^2-9}{x^2-x-2}\times\dfrac{x+1}{2x^2+5x-3}$`,
+            T`$\dfrac{x^2-x-2}{x^2-9}\times\dfrac{2x^2+5x-3}{x+1}$`,
+            T`$\dfrac{x^2-9}{x^2-x-2}\times\dfrac{2x^2+5x-3}{x+1}$`,
+            T`$\dfrac{x^2-x-2}{x^2-9}\times\dfrac{x+1}{2x^2+5x-3}$`,
+          ],
+          correct: 0,
+          feedback: [
+            'Change the division into a multiplication by the reciprocal of the divisor (the second fraction).',
+            'That flips the first fraction. It is the divisor, the one after ÷, that is turned upside down.',
+            'The sign changed to × but nothing was flipped, so this is a different calculation.',
+            'Only the divisor is flipped. Flipping both gives a different expression.',
+          ],
+          solution: [T`Dividing by a fraction is multiplying by its reciprocal: $$\frac{x^2-9}{x^2-x-2}\times\frac{x+1}{2x^2+5x-3}$$`],
+        },
+        {
+          id: 'try-2b',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-6 · Try 2(b)',
+          prompt: T`Now finish it. Calculate $\dfrac{x^2-9}{x^2-x-2}\div\dfrac{2x^2+5x-3}{x+1}$.`,
+          fields: [{key: 'v', answer: '(x-3)/((x-2)(2x-1))', rule: 'simplified', placeholder: 'e.g. (x-3)/((x-2)(...))'}],
+          hints: [
+            T`$x^2-9=(x-3)(x+3)$ and $x^2-x-2=(x-2)(x+1)$.`,
+            T`$2x^2+5x-3=(2x-1)(x+3)$. After flipping, it is in the denominator.`,
+            T`$(x+3)$ and $(x+1)$ cancel. Do not expand what is left.`,
+          ],
+          solution: [
+            T`$$\frac{x^2-9}{x^2-x-2}\times\frac{x+1}{2x^2+5x-3}$$`,
+            T`$$=\frac{(x-3)(x+3)}{(x-2)(x+1)}\times\frac{x+1}{(2x-1)(x+3)}$$`,
+            T`Cancel $(x+3)$ and $(x+1)$: $$\frac{x-3}{(x-2)(2x-1)}$$`,
+          ],
+        },
+        {
+          id: 'ex-2h',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-6 · Exercise 2(h)',
+          prompt: T`Calculate $\dfrac{x^2-3x-10}{2x^2+3x-2}\div\dfrac{x^2-2x-15}{6x-3}$.`,
+          fields: [{key: 'v', answer: '3/(x+3)', rule: 'simplified', placeholder: 'a single fraction'}],
+          hints: [
+            'Flip the divisor first, then factorise.',
+            T`$6x-3=3(2x-1)$: a number can be a common factor too.`,
+            T`$x^2-3x-10=(x-5)(x+2)$, $\ 2x^2+3x-2=(2x-1)(x+2)$, $\ x^2-2x-15=(x-5)(x+3)$.`,
+          ],
+          solution: [
+            T`$$\frac{x^2-3x-10}{2x^2+3x-2}\times\frac{6x-3}{x^2-2x-15}$$`,
+            T`$$=\frac{(x-5)(x+2)}{(2x-1)(x+2)}\times\frac{3(2x-1)}{(x-5)(x+3)}$$`,
+            T`Cancel $(x-5)$, $(x+2)$ and $(2x-1)$: $$\frac{3}{x+3}$$`,
+          ],
+        },
+        {
+          id: 'ex-1f',
+          type: 'input',
+          level: 'challenge',
+          source: 'Lesson 1-6 · Exercise 1(f)',
+          prompt: T`Simplify $\dfrac{x^3-1}{x^2+2x-3}$. Type the numerator and the denominator of the irreducible fraction.`,
+          fields: [
+            {key: 'n', label: 'Numerator', answer: 'x^2+x+1', placeholder: 'top'},
+            {key: 'd', label: 'Denominator', answer: 'x+3', placeholder: 'bottom'},
+          ],
+          hints: [
+            T`The numerator is a difference of two cubes: $a^3-b^3=(a-b)(a^2+ab+b^2)$.`,
+            T`$x^3-1=(x-1)(x^2+x+1)$ and $x^2+2x-3=(x+3)(x-1)$.`,
+          ],
+          solution: [
+            T`$$\frac{x^3-1}{x^2+2x-3}=\frac{(x-1)(x^2+x+1)}{(x+3)(x-1)}$$`,
+            T`Cancel $(x-1)$: $$\frac{x^2+x+1}{x+3}$$`,
+            T`$x^2+x+1$ has no real factors, so this is irreducible.`,
+          ],
+        },
+        {
+          id: 'challenge-sqrt123',
+          type: 'input',
+          level: 'challenge',
+          source: 'Lesson 1-6 · Challenge (adapted)',
+          prompt: T`Simplify, then evaluate. If $x=\sqrt{123}$, find the value of $$\frac{x^3+8}{x^2-x-6}\times\frac{x^2-6x+9}{x^2-2x+4}\div\frac{2x-6}{x^2-1}$$ (The textbook prints $x^5-1$ in the last denominator. With $x^2-1$ the answer is a whole number.)`,
+          fields: [{key: 'v', answer: '61', rule: 'number', placeholder: 'a number'}],
+          hints: [
+            'Do not substitute yet. Flip the divisor and factorise everything first.',
+            T`Sum of two cubes: $x^3+8=(x+2)(x^2-2x+4)$. Also $x^2-6x+9=(x-3)^2$ and $2x-6=2(x-3)$.`,
+            T`Everything cancels except $\dfrac{x^2-1}{2}$. Now use $x^2=123$.`,
+          ],
+          solution: [
+            T`Flip the divisor and factorise: $x^3+8=(x+2)(x^2-2x+4)$, $\ x^2-x-6=(x-3)(x+2)$, $\ x^2-6x+9=(x-3)^2$, $\ 2x-6=2(x-3)$.`,
+            T`$$\frac{(x+2)(x^2-2x+4)}{(x-3)(x+2)}\times\frac{(x-3)^2}{x^2-2x+4}$$`,
+            T`$$\times\,\frac{x^2-1}{2(x-3)}$$`,
+            T`Cancel $(x+2)$, $(x^2-2x+4)$ and both $(x-3)$’s: $$\frac{x^2-1}{2}$$`,
+            T`With $x=\sqrt{123}$, $x^2=123$, so the value is $\dfrac{123-1}{2}=61$.`,
+            T`(As printed, with $x^5-1$, the same cancelling leaves $\dfrac{x^5-1}{2}=\dfrac{15129\sqrt{123}-1}{2}$.)`,
+          ],
+        },
+      ],
+    },
+    // ------------------------------------------------------------------------------------ 1-7
+    {
+      id: '1-7',
+      title: 'Addition and Subtraction of Rational Expressions',
+      blurb: 'Give the fractions a common denominator, combine the numerators, then factorise and reduce.',
+      ideas: [
+        {
+          title: 'Make the denominators match',
+          body: [
+            'Just as with numerical fractions, multiply the numerator and denominator of each fraction by the same expression.',
+            T`$$\frac{1}{x+1}+\frac{1}{x-2}=\frac{(x-2)+(x+1)}{(x+1)(x-2)}$$`,
+            T`$$=\frac{2x-1}{(x+1)(x-2)}$$`,
+          ],
+        },
+        {
+          title: 'Factorise first, tidy up last',
+          body: [
+            T`**Factorise the denominators** before anything else: $x^2-x-2=(x+1)(x-2)$ and $x^2-5x+6=(x-2)(x-3)$ share $(x-2)$, so the common denominator is just $(x+1)(x-2)(x-3)$.`,
+            'Afterwards calculate **only the numerator**, then check whether it can be factorised and reduced. Leave the denominator in brackets.',
+          ],
+        },
+        {
+          title: 'Never add tops and bottoms',
+          body: [
+            T`$\dfrac12+\dfrac13$ is $\dfrac56$, not $\dfrac{1+1}{2+3}=\dfrac25$, which is smaller than the $\dfrac12$ we started with.`,
+            'Rational expressions obey exactly the same rule.',
+          ],
+        },
+      ],
+      widget: {
+        title: 'Common-denominator builder',
+        blurb: 'Choose what each fraction must be multiplied by, top and bottom, until the two denominators are the same. Then watch the numerators combine.',
+        Component: DenominatorBuilder,
+      },
+      exercises: [
+        {
+          id: 'add-mistake',
+          type: 'choice',
+          level: 'warmup',
+          source: 'Lesson 1-7 · Exercise 4',
+          prompt: T`Simplify $\dfrac{1}{x+2}+\dfrac{1}{x-2}$.`,
+          options: [T`$\dfrac{2}{2x}=\dfrac{1}{x}$`, T`$\dfrac{2x}{(x+2)(x-2)}$`, T`$\dfrac{2}{(x+2)(x-2)}$`, T`$\dfrac{1}{(x+2)(x-2)}$`],
+          correct: 1,
+          feedback: [
+            T`That adds the tops and adds the bottoms. Test $x=3$: $\frac15+1=\frac65$, but $\frac1x=\frac13$.`,
+            T`Each fraction was multiplied, top and bottom, by the bracket it was missing: $(x-2)+(x+2)=2x$.`,
+            T`The denominator is right, but each numerator must also be multiplied by the missing bracket.`,
+            'That is the product of the two fractions, not their sum.',
+          ],
+          solution: [
+            T`$$\frac{1}{x+2}+\frac{1}{x-2}=\frac{(x-2)+(x+2)}{(x+2)(x-2)}$$`,
+            T`$$=\frac{2x}{(x+2)(x-2)}$$`,
+            T`Check with $x=3$: $\frac15+1=\frac65$ and $\frac{6}{5\times1}=\frac65$.`,
+          ],
+        },
+        {
+          id: 'ex-1',
+          type: 'input',
+          level: 'warmup',
+          source: 'Lesson 1-7 · Exercise 1',
+          prompt: T`Simplify $\dfrac{x^2-4}{x+1}+\dfrac{3}{x+1}$.`,
+          fields: [{key: 'v', answer: 'x-1', rule: 'simplified', placeholder: 'as simple as possible'}],
+          hints: ['The denominators already match, so add the numerators.', T`$x^2-4+3=x^2-1$, which factorises.`],
+          solution: [T`$$\frac{x^2-4+3}{x+1}=\frac{x^2-1}{x+1}$$`, T`$$=\frac{(x-1)(x+1)}{x+1}=x-1$$`],
+        },
+        {
+          id: 'ex-2-sign',
+          type: 'choice',
+          level: 'warmup',
+          source: 'Lesson 1-7 · Exercise 2',
+          prompt: T`Simplify $\dfrac{3}{x^2+x}-\dfrac{3-x}{x^2+x}$.`,
+          options: [T`$\dfrac{1}{x+1}$`, T`$-\dfrac{1}{x+1}$`, T`$\dfrac{6-x}{x(x+1)}$`, T`$\dfrac{x}{x^2+x}=\dfrac{1}{x^2}$`],
+          correct: 0,
+          feedback: [
+            T`$3-(3-x)=x$, and $\dfrac{x}{x(x+1)}$ reduces to $\dfrac{1}{x+1}$.`,
+            T`Watch the signs: $-(3-x)=-3+x$, so the numerator is $+x$.`,
+            T`The minus sign applies to the whole numerator $3-x$: put it in brackets. $3-(3-x)$ is not $3+3-x$.`,
+            T`The numerator $x$ is right, but then $x$ was cancelled against a term. Factorise first: $x^2+x=x(x+1)$.`,
+          ],
+          solution: [
+            T`Put the numerator being subtracted in brackets: $$\frac{3-(3-x)}{x^2+x}=\frac{x}{x(x+1)}=\frac{1}{x+1}$$`,
+          ],
+        },
+        {
+          id: 'warmup-guided',
+          type: 'proof',
+          level: 'practice',
+          source: 'Lesson 1-7 · Warm Up',
+          prompt: T`Simplify $\dfrac{x+4}{x^2-2x}-\dfrac{3}{x^2-3x+2}$, one step at a time.`,
+          steps: [
+            {
+              goal: 'First, factorise the denominators.',
+              options: [
+                T`$\dfrac{x+4}{x(x-2)}-\dfrac{3}{(x-1)(x-2)}$`,
+                T`$\dfrac{x+4}{x(x-2)}-\dfrac{3}{(x+1)(x+2)}$`,
+                T`$\dfrac{x+4}{x(x+2)}-\dfrac{3}{(x-1)(x-2)}$`,
+              ],
+              correct: 0,
+            },
+            {
+              goal: 'Find a common denominator: multiply each fraction by what it is missing.',
+              options: [
+                T`$\dfrac{(x+4)(x-1)-3x}{x(x-1)(x-2)}$`,
+                T`$\dfrac{(x+4)-3}{x(x-1)(x-2)}$`,
+                T`$\dfrac{(x+4)x-3(x-1)}{x(x-1)(x-2)}$`,
+              ],
+              correct: 0,
+              why: T`The first fraction was missing $(x-1)$, the second was missing $x$.`,
+            },
+            {
+              goal: 'Calculate only the numerator.',
+              options: [T`$\dfrac{x^2-4}{x(x-1)(x-2)}$`, T`$\dfrac{x^2+6x-4}{x(x-1)(x-2)}$`, T`$\dfrac{x^2-3x-4}{x(x-1)(x-2)}$`],
+              correct: 0,
+              why: T`$(x+4)(x-1)=x^2+3x-4$, and then $-3x$ removes the middle term.`,
+            },
+            {
+              goal: 'Factorise the numerator and reduce.',
+              options: [
+                '$\\dfrac{' + X('(x-2)') + '(x+2)}{x(x-1)' + X('(x-2)') + '}=\\dfrac{x+2}{x(x-1)}$',
+                '$\\dfrac{(x-2)' + X('(x-2)') + '}{x(x-1)' + X('(x-2)') + '}=\\dfrac{x-2}{x(x-1)}$',
+                '$\\dfrac{' + X('x') + '^2-4}{' + X('x') + '(x-1)(x-2)}=\\dfrac{x-4}{(x-1)(x-2)}$',
+              ],
+              correct: 0,
+              why: 'Stop here: do not expand the denominator.',
+            },
+          ],
+          hints: [T`$x^2-2x=x(x-2)$ and $x^2-3x+2=(x-1)(x-2)$.`],
+          solution: [
+            T`$$\frac{x+4}{x(x-2)}-\frac{3}{(x-1)(x-2)}$$`,
+            T`$$=\frac{(x+4)(x-1)-3x}{x(x-1)(x-2)}$$`,
+            T`$$=\frac{x^2-4}{x(x-1)(x-2)}$$`,
+            T`$$=\frac{(x-2)(x+2)}{x(x-1)(x-2)}=\frac{x+2}{x(x-1)}$$`,
+          ],
+        },
+        {
+          id: 'expand-trap',
+          type: 'choice',
+          level: 'practice',
+          source: 'Lesson 1-7 · Warm Up notes',
+          prompt: T`Two students simplify the Warm Up expression. Student A writes $\dfrac{x^2-4}{x^3-3x^2+2x}$ and student B writes $\dfrac{x+2}{x(x-1)}$. Both are equal to the original. Whose answer is finished?`,
+          options: [
+            T`Only B's. By expanding the denominator, A hid the common factor $(x-2)$, so A's fraction is not reduced.`,
+            T`Only A's. A final answer should not contain brackets.`,
+            'Both, because they are equal.',
+            T`Neither. B still has to expand the denominator to $x^2-x$.`,
+          ],
+          correct: 0,
+          feedback: [
+            T`$x^3-3x^2+2x=x(x-1)(x-2)$ and $x^2-4=(x-2)(x+2)$: kept in brackets, the common factor is easy to see.`,
+            'For rational expressions it is the other way round: keep the denominator factorised.',
+            'They are equal, but “simplify” means reduce until the expression is irreducible. A’s still has a common factor.',
+            'Expanding would not be wrong, but it is extra work that hides the factors. The textbook says: do not expand the denominator.',
+          ],
+          solution: [
+            T`A's denominator is $x(x-1)(x-2)$ multiplied out, and A's numerator is $(x-2)(x+2)$, so $(x-2)$ still cancels.`,
+            T`B's answer $\dfrac{x+2}{x(x-1)}$ is irreducible and its denominator is left in brackets, as the textbook advises.`,
+          ],
+        },
+        {
+          id: 'try-2',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-7 · Try 2',
+          prompt: T`Simplify $\dfrac{x}{x-1}-\dfrac{2}{x^2-1}$.`,
+          fields: [{key: 'v', answer: '(x+2)/(x+1)', rule: 'simplified', placeholder: 'a single fraction'}],
+          hints: [
+            T`$x^2-1=(x-1)(x+1)$, so only the first fraction needs changing.`,
+            T`The numerator becomes $x(x+1)-2=x^2+x-2$.`,
+            T`$x^2+x-2=(x+2)(x-1)$: always check whether the result can be reduced.`,
+          ],
+          solution: [
+            T`$$\frac{x}{x-1}-\frac{2}{(x-1)(x+1)}$$`,
+            T`$$=\frac{x(x+1)-2}{(x-1)(x+1)}=\frac{x^2+x-2}{(x-1)(x+1)}$$`,
+            T`$$=\frac{(x+2)(x-1)}{(x-1)(x+1)}=\frac{x+2}{x+1}$$`,
+          ],
+        },
+        {
+          id: 'try-1',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-7 · Try 1',
+          prompt: T`Simplify $\dfrac{x-1}{x^2+4x+3}+\dfrac{2}{x^2+5x+6}$.`,
+          fields: [{key: 'v', answer: 'x/((x+1)(x+2))', rule: 'simplified', placeholder: 'e.g. x/((x+1)(...))'}],
+          hints: [
+            T`$x^2+4x+3=(x+1)(x+3)$ and $x^2+5x+6=(x+2)(x+3)$.`,
+            T`Common denominator $(x+1)(x+2)(x+3)$. The numerator is $(x-1)(x+2)+2(x+1)$.`,
+            T`That numerator is $x^2+3x=x(x+3)$, so $(x+3)$ cancels.`,
+          ],
+          solution: [
+            T`$$\frac{x-1}{(x+1)(x+3)}+\frac{2}{(x+2)(x+3)}$$`,
+            T`$$=\frac{(x-1)(x+2)+2(x+1)}{(x+1)(x+2)(x+3)}$$`,
+            T`$$=\frac{x^2+3x}{(x+1)(x+2)(x+3)}$$`,
+            T`$$=\frac{x(x+3)}{(x+1)(x+2)(x+3)}$$`,
+            T`$$=\frac{x}{(x+1)(x+2)}$$`,
+          ],
+        },
+        {
+          id: 'ex-5',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-7 · Exercise 5',
+          prompt: T`Simplify $\dfrac{2}{x-1}+\dfrac{3}{x^2+5x-6}$. Type the numerator and the denominator of your single fraction.`,
+          fields: [
+            {key: 'n', label: 'Numerator', answer: '2x+15', placeholder: 'top'},
+            {key: 'd', label: 'Denominator', answer: '(x-1)(x+6)', placeholder: 'bottom, e.g. (x-1)(...)'},
+          ],
+          hints: [T`$x^2+5x-6=(x+6)(x-1)$, so only the first fraction needs changing.`, T`The numerator is $2(x+6)+3$.`],
+          solution: [
+            T`$$\frac{2}{x-1}+\frac{3}{(x+6)(x-1)}$$`,
+            T`$$=\frac{2(x+6)+3}{(x-1)(x+6)}=\frac{2x+15}{(x-1)(x+6)}$$`,
+            T`$2x+15$ has no factor in common with the denominator, so this is the final answer.`,
+          ],
+        },
+        {
+          id: 'ex-10',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-7 · Exercise 10',
+          prompt: T`Simplify $\dfrac{x+4}{x^2+2x}-\dfrac{x+5}{x^2+x-2}$.`,
+          fields: [{key: 'v', answer: '-2/(x(x-1))', rule: 'simplified', placeholder: 'a single fraction'}],
+          hints: [
+            T`$x^2+2x=x(x+2)$ and $x^2+x-2=(x+2)(x-1)$.`,
+            T`The numerator is $(x+4)(x-1)-x(x+5)$. Keep the brackets until you have dealt with the minus sign.`,
+            T`It comes to $-2x-4=-2(x+2)$.`,
+          ],
+          solution: [
+            T`$$\frac{x+4}{x(x+2)}-\frac{x+5}{(x+2)(x-1)}$$`,
+            T`$$=\frac{(x+4)(x-1)-x(x+5)}{x(x+2)(x-1)}$$`,
+            T`$$=\frac{x^2+3x-4-x^2-5x}{x(x+2)(x-1)}$$`,
+            T`$$=\frac{-2(x+2)}{x(x+2)(x-1)}=-\frac{2}{x(x-1)}$$`,
+          ],
+        },
+        {
+          id: 'challenge-water',
+          type: 'input',
+          level: 'challenge',
+          source: 'Lesson 1-7 · Challenge',
+          prompt: T`**Two-stage water filtration.** After $x$ hours, Stage 1 of a filtration system extracts pollutant at the rate $\dfrac{x^3+8x}{x^2-x-2}$, while backflow in Stage 2 reduces the clean-up rate by $\dfrac{8}{x-2}$. Subtract the Stage 2 rate from the Stage 1 rate and reduce the result. Type its numerator and its denominator.`,
+          fields: [
+            {key: 'n', label: 'Numerator', answer: 'x^2+2x+4', placeholder: 'top'},
+            {key: 'd', label: 'Denominator', answer: 'x+1', placeholder: 'bottom'},
+          ],
+          hints: [
+            T`$x^2-x-2=(x-2)(x+1)$, so multiply the second fraction by $(x+1)$, top and bottom.`,
+            T`The numerator is $x^3+8x-8(x+1)=x^3-8$.`,
+            T`Difference of two cubes: $x^3-8=(x-2)(x^2+2x+4)$.`,
+          ],
+          solution: [
+            T`$$\frac{x^3+8x}{(x-2)(x+1)}-\frac{8}{x-2}$$`,
+            T`$$=\frac{x^3+8x-8(x+1)}{(x-2)(x+1)}$$`,
+            T`$$=\frac{x^3-8}{(x-2)(x+1)}$$`,
+            T`$$=\frac{(x-2)(x^2+2x+4)}{(x-2)(x+1)}$$`,
+            T`$$=\frac{x^2+2x+4}{x+1}$$`,
+            'The net purification rate is a much simpler expression than either stage on its own.',
+          ],
+        },
+      ],
+    },
+    // ------------------------------------------------------------------------------------ 1-8
+    {
+      id: '1-8',
+      title: 'Compound Fractions',
+      blurb: 'A fraction with smaller fractions inside it is tamed by one move: multiply the top and the bottom by the same expression.',
+      ideas: [
+        {
+          title: 'What is a compound fraction?',
+          body: [
+            'An expression with rational expressions inside its numerator or its denominator:',
+            T`$$\dfrac{\;\dfrac{1}{y}\;}{\dfrac{2}{x}}\qquad\dfrac{1-\dfrac{y}{x}}{1+\dfrac{y}{x}}$$`,
+          ],
+        },
+        {
+          title: 'The one trick',
+          body: [
+            '**Multiply the numerator and the denominator by the same expression.** That is multiplying by 1, so the value does not change.',
+            T`$$\dfrac{\;\frac12\;}{\frac34}=\dfrac{\frac12\times4}{\frac34\times4}=\dfrac{2}{3}$$`,
+          ],
+        },
+        {
+          title: 'Multiply every term',
+          body: [
+            'Use the common denominator of the little fractions, and multiply every term by it, including the terms that are not fractions.',
+            T`$$\dfrac{1}{1-\dfrac{1}{x-1}}=\dfrac{1\times(x-1)}{(x-1)-1}=\dfrac{x-1}{x-2}$$`,
+            'In a tower of fractions, simplify the innermost one first, then repeat one level up.',
+          ],
+        },
+      ],
+      widget: {
+        title: 'Compound-fraction peeler',
+        blurb: 'Choose what to multiply the top and the bottom by and see what happens to the little fractions. Then check with numbers that the value never changes.',
+        Component: CompoundPeeler,
+      },
+      exercises: [
+        {
+          id: 'point-flip',
+          type: 'choice',
+          level: 'warmup',
+          source: 'Lesson 1-8 · Point',
+          prompt: T`Simplify the compound fraction $\dfrac{\;\dfrac{1}{y}\;}{\dfrac{2}{x}}$.`,
+          options: [T`$\dfrac{x}{2y}$`, T`$\dfrac{2y}{x}$`, T`$\dfrac{2}{xy}$`, T`$\dfrac{y}{2x}$`],
+          correct: 0,
+          feedback: [
+            T`Multiplying top and bottom by $xy$ gives $x$ on top and $2y$ underneath.`,
+            'That is upside down. Multiply top and bottom by $xy$ and see which letter survives on top.',
+            T`That is the product $\frac1y\times\frac2x$. The big fraction bar means divide.`,
+            T`Multiply the top $\frac1y$ by $xy$: the $y$ cancels and $x$ is left on top, not $y$.`,
+          ],
+          solution: [T`Multiply the numerator and the denominator by $xy$: $$\dfrac{\frac1y\times xy}{\frac2x\times xy}=\dfrac{x}{2y}$$`],
+        },
+        {
+          id: 'warm-1-guided',
+          type: 'proof',
+          level: 'warmup',
+          source: 'Lesson 1-8 · Warm Up 1',
+          prompt: T`Simplify $\dfrac{1}{1-\dfrac{1}{x-1}}$, one step at a time.`,
+          steps: [
+            {
+              goal: 'Choose what to multiply the numerator and the denominator by.',
+              options: [T`Multiply both by $x-1$`, T`Multiply both by $x$`, T`Multiply both by $x+1$`],
+              correct: 0,
+              why: 'It is the denominator of the little fraction, so it will cancel it.',
+            },
+            {
+              goal: 'Multiply every term.',
+              options: [T`$\dfrac{x-1}{(x-1)-1}$`, T`$\dfrac{x-1}{1-1}$`, T`$\dfrac{1}{(x-1)-1}$`],
+              correct: 0,
+              why: T`The plain 1 underneath becomes $x-1$, and the little fraction becomes 1.`,
+            },
+            {goal: 'Tidy up.', options: [T`$\dfrac{x-1}{x-2}$`, T`$\dfrac{x-1}{x}$`, T`$\dfrac{-1}{-2}=\dfrac12$`], correct: 0},
+          ],
+          solution: [
+            T`Multiply the numerator and the denominator by $x-1$: $$\dfrac{1\times(x-1)}{\left(1-\dfrac{1}{x-1}\right)\times(x-1)}$$`,
+            T`$$=\dfrac{x-1}{(x-1)-1}=\dfrac{x-1}{x-2}$$`,
+          ],
+        },
+        {
+          id: 'c-try-1',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-8 · Try 1',
+          prompt: T`Simplify $\dfrac{1}{1-\dfrac{x}{x+1}}$.`,
+          fields: [{key: 'v', answer: 'x+1', rule: 'simplified', placeholder: 'as simple as possible'}],
+          hints: [T`Multiply the numerator and the denominator by $x+1$.`, T`The denominator becomes $(x+1)-x$.`],
+          solution: [
+            T`Multiply the numerator and the denominator by $x+1$: $$\dfrac{1\times(x+1)}{\left(1-\dfrac{x}{x+1}\right)\times(x+1)}$$`,
+            T`$$=\dfrac{x+1}{(x+1)-x}=\dfrac{x+1}{1}=x+1$$`,
+          ],
+        },
+        {
+          id: 'c-try-2',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-8 · Try 2',
+          prompt: T`Simplify $\dfrac{\dfrac{1}{x+2}+\dfrac{1}{x-2}}{\dfrac{1}{x+2}-\dfrac{1}{x-2}}$.`,
+          fields: [{key: 'v', answer: '-x/2', rule: 'simplified', placeholder: 'as simple as possible'}],
+          hints: [
+            T`Multiply the numerator and the denominator by $(x+2)(x-2)$.`,
+            T`Each little fraction keeps the other bracket: the top becomes $(x-2)+(x+2)$.`,
+            T`The bottom becomes $(x-2)-(x+2)=-4$.`,
+          ],
+          solution: [
+            T`Multiply top and bottom by $(x+2)(x-2)$: $$\dfrac{(x-2)+(x+2)}{(x-2)-(x+2)}=\dfrac{2x}{-4}=-\dfrac{x}{2}$$`,
+          ],
+        },
+        {
+          id: 'c-ex-2',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-8 · Exercise 2',
+          prompt: T`Simplify $\dfrac{1+\dfrac{x-y}{x+y}}{1-\dfrac{x-y}{x+y}}$.`,
+          fields: [{key: 'v', answer: 'x/y', rule: 'simplified', placeholder: 'as simple as possible'}],
+          hints: [T`Multiply the numerator and the denominator by $x+y$. Remember the two plain 1’s.`, T`Top: $(x+y)+(x-y)$. Bottom: $(x+y)-(x-y)$.`],
+          solution: [T`Multiply top and bottom by $x+y$: $$\dfrac{(x+y)+(x-y)}{(x+y)-(x-y)}=\dfrac{2x}{2y}=\dfrac{x}{y}$$`],
+        },
+        {
+          id: 'c-ex-1-guided',
+          type: 'proof',
+          level: 'practice',
+          source: 'Lesson 1-8 · Exercise 1',
+          prompt: T`Simplify $\dfrac{x-\dfrac{2}{x-1}}{\dfrac{x}{x-1}-2}$, one step at a time.`,
+          steps: [
+            {
+              goal: T`Multiply the numerator and the denominator by $x-1$.`,
+              options: [T`$\dfrac{x(x-1)-2}{x-2(x-1)}$`, T`$\dfrac{x-2}{x-2}$`, T`$\dfrac{x(x-1)-2}{x-2}$`],
+              correct: 0,
+              why: T`Every term is multiplied, including the plain $x$ on top and the plain $2$ underneath.`,
+            },
+            {
+              goal: 'Expand and collect like terms.',
+              options: [T`$\dfrac{x^2-x-2}{2-x}$`, T`$\dfrac{x^2-x-2}{-x-2}$`, T`$\dfrac{x^2-2}{2-x}$`],
+              correct: 0,
+              why: T`$x-2(x-1)=x-2x+2$.`,
+            },
+            {
+              goal: 'Factorise and reduce.',
+              options: [
+                '$\\dfrac{' + X('(x-2)') + '(x+1)}{-' + X('(x-2)') + '}=-(x+1)$',
+                '$\\dfrac{' + X('(x-2)') + '(x+1)}{' + X('(2-x)') + '}=x+1$',
+                T`$\dfrac{(x+2)(x-1)}{2-x}$, which is irreducible`,
+              ],
+              correct: 0,
+              why: T`$2-x=-(x-2)$: the factors match except for a sign, and the sign stays behind.`,
+            },
+          ],
+          hints: [T`The only little denominator is $x-1$.`],
+          solution: [
+            T`Multiply top and bottom by $x-1$: $$\dfrac{x(x-1)-2}{x-2(x-1)}=\dfrac{x^2-x-2}{2-x}$$`,
+            T`$$=\dfrac{(x-2)(x+1)}{-(x-2)}=-(x+1)$$`,
+          ],
+        },
+        {
+          id: 'c-ex-4',
+          type: 'input',
+          level: 'practice',
+          source: 'Lesson 1-8 · Exercise 4',
+          prompt: T`Simplify $\dfrac{\dfrac{x+1}{x-1}-\dfrac{x-1}{x+1}}{\dfrac{x+1}{x-1}+\dfrac{x-1}{x+1}}$.`,
+          fields: [{key: 'v', answer: '2x/(x^2+1)', rule: 'simplified', placeholder: 'a single fraction'}],
+          hints: [
+            T`Multiply the numerator and the denominator by $(x-1)(x+1)$.`,
+            T`Top: $(x+1)^2-(x-1)^2$. Bottom: $(x+1)^2+(x-1)^2$.`,
+            T`Top $=4x$, bottom $=2x^2+2$. There is still a common factor.`,
+          ],
+          solution: [
+            T`Multiply top and bottom by $(x-1)(x+1)$: $$\dfrac{(x+1)^2-(x-1)^2}{(x+1)^2+(x-1)^2}$$`,
+            T`$$=\dfrac{4x}{2x^2+2}=\dfrac{4x}{2(x^2+1)}=\dfrac{2x}{x^2+1}$$`,
+          ],
+        },
+        {
+          id: 'reflect-hole',
+          type: 'choice',
+          level: 'practice',
+          source: 'Lesson 1-8 · Reflect',
+          prompt: T`Consider the statement $\dfrac{x^2-16}{x-4}=x+4$. Which description is correct?`,
+          options: [
+            T`It is true for every real $x$, because $(x-4)$ cancels.`,
+            T`It is true for every $x$ except $x=4$, where the left side is undefined. Its graph is the line $y=x+4$ with a hole at $(4,\,8)$.`,
+            T`It is true only when $x=4$.`,
+            T`It is true for every $x$ except $x=-4$.`,
+          ],
+          correct: 1,
+          feedback: [
+            T`Cancelling $(x-4)$ means dividing by it, which is only allowed when $x\neq4$. At $x=4$ the left side is $\frac00$.`,
+            'A graphing calculator hides the hole because a single missing point is thinner than one pixel.',
+            T`At $x=4$ the left side is not even defined. Try $x=5$: $\frac{9}{1}=9=5+4$.`,
+            T`$x=-4$ is fine: $\frac{0}{-8}=0=-4+4$. The trouble is where the denominator is zero.`,
+          ],
+          solution: [
+            T`For $x\neq4$: $\dfrac{x^2-16}{x-4}=\dfrac{(x-4)(x+4)}{x-4}=x+4$.`,
+            T`At $x=4$ the left side is $\dfrac00$, which is undefined, while the right side is $8$. So it is not an identity for all real numbers.`,
+            T`The graph of the left side is the line $y=x+4$ with the single point $(4,8)$ missing.`,
+          ],
+        },
+        {
+          id: 'c-try-3',
+          type: 'input',
+          level: 'challenge',
+          source: 'Lesson 1-8 · Try 3',
+          prompt: T`Simplify $\dfrac{1}{1-\dfrac{1}{1-\dfrac{1}{x}}}$.`,
+          fields: [{key: 'v', answer: '1-x', rule: 'simplified', placeholder: 'as simple as possible'}],
+          hints: [
+            T`Start with the innermost part: simplify $\dfrac{1}{1-\frac1x}$ by multiplying its top and bottom by $x$.`,
+            T`That gives $\dfrac{x}{x-1}$, so the expression is $\dfrac{1}{1-\dfrac{x}{x-1}}$.`,
+            T`Now multiply top and bottom by $x-1$. Watch the sign of the denominator.`,
+          ],
+          solution: [
+            T`Innermost first: $$\dfrac{1}{1-\dfrac1x}=\dfrac{x}{x-1}$$`,
+            T`Then multiply top and bottom by $x-1$: $$\dfrac{1}{1-\dfrac{x}{x-1}}=\dfrac{x-1}{(x-1)-x}$$`,
+            T`$$=\dfrac{x-1}{-1}=1-x$$`,
+          ],
+        },
+        {
+          id: 'challenge-booster',
+          type: 'input',
+          level: 'challenge',
+          source: 'Lesson 1-8 · Challenge',
+          prompt: T`**Signal booster.** The efficiency of a 3-stage booster is modelled by $$E(x)=\dfrac{1}{1+\dfrac{1}{1+\dfrac{1}{1+x}}}\qquad(x>0)$$ Write $E(x)$ as a single irreducible rational expression $\dfrac{A(x)}{B(x)}$.`,
+          fields: [
+            {key: 'a', label: '$A(x)=$', answer: 'x+2', placeholder: 'numerator'},
+            {key: 'b', label: '$B(x)=$', answer: '2x+3', placeholder: 'denominator'},
+          ],
+          hints: [
+            T`Work from the bottom of the tower: $1+\dfrac{1}{1+x}=\dfrac{x+2}{x+1}$.`,
+            T`So the middle layer is $1+\dfrac{x+1}{x+2}=\dfrac{2x+3}{x+2}$.`,
+            T`$E(x)$ is 1 divided by that.`,
+          ],
+          solution: [
+            T`Innermost: $$1+\dfrac{1}{1+x}=\dfrac{(1+x)+1}{1+x}=\dfrac{x+2}{x+1}$$`,
+            T`One level up: $$1+\dfrac{1}{\;\frac{x+2}{x+1}\;}=1+\dfrac{x+1}{x+2}=\dfrac{2x+3}{x+2}$$`,
+            T`So $$E(x)=\dfrac{1}{\;\frac{2x+3}{x+2}\;}=\dfrac{x+2}{2x+3}$$`,
+            T`Check with $x=1$: the tower gives $\dfrac{1}{1+\frac23}=\dfrac35$, and $\dfrac{1+2}{2+3}=\dfrac35$.`,
+          ],
+        },
+      ],
+    },
+  ],
 };

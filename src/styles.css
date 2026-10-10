@@ -266,3 +266,6 @@ input[type='range'] { width: 100%; accent-color: var(--accent); height: 28px; cu
   .concept-hero { padding: 3vh 0 22px; gap: 14px; }
   .hero { padding: 5vh 0 30px; }
 }
+.solution > *, .hints > * { min-width: 0; }
+
+.field.compact .field-main { grid-template-columns: 1fr; max-width: 320px; }

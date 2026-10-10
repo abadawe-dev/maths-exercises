@@ -81,13 +81,13 @@ try {
 
       if (route) {
         // typed answer: tap the box, use the keypad, check
-        const input = page.locator('.exercise:has(.field) input').first();
+        const input = page.locator('.field:has(.keypad) input').first();
         if (await input.count()) {
-          const card = page.locator('.exercise:has(.field)').first();
+          const card = page.locator('.exercise:has(.keypad)').first();
           await input.scrollIntoViewIfNeeded();
           await input.tap();
           await input.fill('x');
-          await card.locator('.keypad button').first().tap();
+          await card.locator('.field:has(.keypad)').first().locator('.keypad button').first().tap();
           if ((await input.inputValue()) !== 'x^2') note('keypad did not insert into the answer box');
           await card.getByRole('button', {name: 'Check'}).tap();
           await page.waitForTimeout(150);
