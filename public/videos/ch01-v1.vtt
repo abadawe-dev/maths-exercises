@@ -1,0 +1,218 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:06.433
+Welcome to chapter one: algebraic proofs. We begin with a beautiful shortcut, called the binomial theorem.
+
+2
+00:00:06.833 --> 00:00:15.500
+By the end of this video, you will be able to expand a bracket raised to any power, and pick out any single term you like, without ever multiplying the brackets out by hand.
+
+3
+00:00:16.700 --> 00:00:23.833
+Let's start with something familiar. A plus B, all squared, gives A squared, plus two A B, plus B squared.
+
+4
+00:00:24.233 --> 00:00:29.300
+Cube it, and you get four terms. Raise it to the fourth power, and you get five.
+
+5
+00:00:29.700 --> 00:00:40.767
+Now ignore the letters, and look only at the numbers in front. One, two, one. One, three, three, one. One, four, six, four, one.
+
+6
+00:00:41.167 --> 00:00:45.733
+These numbers are not random. They form one of the most famous patterns in mathematics.
+
+7
+00:00:46.933 --> 00:00:50.867
+This is Pascal's triangle. Every row starts and ends with a one.
+
+8
+00:00:51.267 --> 00:01:01.133
+And every other number is simply the sum of the two numbers sitting just above it. One plus two makes three. Three plus three makes six.
+
+9
+00:01:01.533 --> 00:01:10.033
+Each row gives the coefficients for one power. The row for power five reads: one, five, ten, ten, five, one.
+
+10
+00:01:10.433 --> 00:01:16.700
+Notice that the row for power N always has N plus one terms. So the row for power ten has eleven numbers in it.
+
+11
+00:01:17.100 --> 00:01:26.233
+But writing out row after row is slow. What if we want just one number, deep inside the triangle? For that, we need to understand where these numbers come from.
+
+12
+00:01:27.433 --> 00:01:32.400
+A plus B, to the fifth power, means five identical brackets, multiplied together.
+
+13
+00:01:32.800 --> 00:01:39.467
+To build a single term, we pick one letter from every bracket, either an A or a B, and multiply our five picks.
+
+14
+00:01:39.867 --> 00:01:47.967
+Suppose we want the term A cubed, B squared. That means picking B from exactly two of the five brackets, and A from the other three.
+
+15
+00:01:48.367 --> 00:01:54.233
+How many different ways can we choose those two brackets? Count them, and there are exactly ten.
+
+16
+00:01:54.633 --> 00:02:02.633
+So A cubed B squared appears ten times, and its coefficient is ten. Mathematicians call this number, five choose two.
+
+17
+00:02:03.833 --> 00:02:11.600
+We write N choose R like this: a capital C, with N in front and R behind. And there is a quick recipe to calculate it.
+
+18
+00:02:12.000 --> 00:02:23.367
+For five choose three: on top, start at five and count down three numbers. Five times four times three. Underneath, write three times two times one. The answer is ten.
+
+19
+00:02:23.767 --> 00:02:33.700
+Two special cases are worth remembering. Choosing nothing, or choosing everything, can only be done in one way. So N choose zero, and N choose N, both equal one.
+
+20
+00:02:34.100 --> 00:02:48.200
+Now we can describe any term in the expansion of A plus B to the power N. The term containing B to the power R is: N choose R, times A to the power N minus R, times B to the power R.
+
+21
+00:02:49.400 --> 00:02:53.400
+Put all of those terms together, and we have the binomial theorem.
+
+22
+00:02:53.800 --> 00:02:59.967
+Read it from left to right. The power of A starts at N, and steps down by one each time.
+
+23
+00:03:00.367 --> 00:03:06.633
+The power of B starts at zero, and steps up. In every term, the two powers add up to N.
+
+24
+00:03:07.033 --> 00:03:14.633
+And the coefficients, N choose zero, N choose one, N choose two, and so on, are exactly the numbers in Pascal's triangle.
+
+25
+00:03:15.833 --> 00:03:22.900
+Let's use it. Find the coefficient of X to the fourth, in the expansion of two X squared minus three, all to the power seven.
+
+26
+00:03:23.300 --> 00:03:31.967
+Think of two X squared as our A, and negative three as our B. Keep the minus sign attached. Losing it is the most common mistake.
+
+27
+00:03:32.367 --> 00:03:40.767
+To get X to the fourth, we need two X squared, squared. So A has power two, which leaves power five for B, because the powers must add up to seven.
+
+28
+00:03:41.167 --> 00:03:47.733
+Our term is therefore seven choose five, times two X squared, all squared, times negative three to the fifth.
+
+29
+00:03:48.133 --> 00:03:56.933
+Seven choose five is twenty-one. Two X squared, all squared, is four X to the fourth. And negative three to the fifth is negative two hundred and forty-three.
+
+30
+00:03:57.333 --> 00:04:02.467
+Multiply them together, and the coefficient is negative twenty thousand, four hundred and twelve.
+
+31
+00:04:03.667 --> 00:04:08.733
+Next, a full expansion: three X minus two, to the fourth power.
+
+32
+00:04:09.133 --> 00:04:15.633
+The coefficients come from row four of Pascal's triangle: one, four, six, four, one.
+
+33
+00:04:16.033 --> 00:04:23.400
+Now attach the powers. Three X counts down from four to zero, while negative two counts up from zero to four.
+
+34
+00:04:23.800 --> 00:04:30.767
+Simplify each term carefully, watching the signs. Odd powers of negative two stay negative, so the signs alternate.
+
+35
+00:04:31.167 --> 00:04:39.667
+And we get eighty-one X to the fourth, minus two hundred and sixteen X cubed, plus two hundred and sixteen X squared, minus ninety-six X, plus sixteen.
+
+36
+00:04:40.867 --> 00:04:45.933
+What if the bracket has three terms instead of two? This is where the multinomial theorem comes in.
+
+37
+00:04:46.333 --> 00:04:53.800
+The idea is exactly the same. In A plus B plus C, to the power eight, we pick one letter from each of the eight brackets.
+
+38
+00:04:54.200 --> 00:05:03.733
+To make A to the fourth, B cubed, C, we need four A’s, three B’s, and one C. The coefficient is the number of ways to arrange those eight letters in a row.
+
+39
+00:05:04.133 --> 00:05:13.333
+That number is eight factorial, divided by four factorial, times three factorial, times one factorial. Which works out to two hundred and eighty.
+
+40
+00:05:13.733 --> 00:05:25.267
+In general, the coefficient of A to the P, B to the Q, C to the R, is N factorial, over P factorial, Q factorial, R factorial, where P, Q and R add up to N.
+
+41
+00:05:26.467 --> 00:05:35.267
+Let's make it harder. Find the coefficient of the same term, in the expansion of A, minus two B, plus three C, all to the power eight.
+
+42
+00:05:35.667 --> 00:05:44.233
+The counting part does not change. It is still two hundred and eighty. But now each B brings a factor of negative two, and each C brings a factor of three.
+
+43
+00:05:44.633 --> 00:05:50.633
+So we multiply by negative two cubed, which is negative eight, and by three to the power one.
+
+44
+00:05:51.033 --> 00:05:57.367
+Two hundred and eighty, times negative eight, times three, gives negative six thousand, seven hundred and twenty.
+
+45
+00:05:58.567 --> 00:06:07.467
+The binomial theorem is also a powerful tool for proofs. Here is a neat trick. Start with the expansion of one plus X, to the power N.
+
+46
+00:06:07.867 --> 00:06:14.367
+This is true for every value of X. So we are free to substitute any number we like. Let's choose X equals one.
+
+47
+00:06:14.767 --> 00:06:21.267
+The left side becomes two to the power N. On the right, every power of X turns into one, leaving just the coefficients.
+
+48
+00:06:21.667 --> 00:06:30.567
+So the numbers in any row of Pascal's triangle always add up to a power of two. One, two, four, eight, sixteen, thirty-two.
+
+49
+00:06:30.967 --> 00:06:39.767
+Try X equals negative one instead, and the left side becomes zero. That proves that the coefficients, with alternating signs, always cancel out completely.
+
+50
+00:06:40.967 --> 00:06:47.933
+Let's recap. The binomial theorem expands A plus B to the power N, using the coefficients N choose R.
+
+51
+00:06:48.333 --> 00:06:53.633
+The multinomial theorem extends the same idea to three or more terms, using factorials.
+
+52
+00:06:54.033 --> 00:06:59.900
+And substituting clever values of X, into one plus X to the N, proves surprising identities.
+
+53
+00:07:00.300 --> 00:07:09.033
+Now it is your turn. Pause the video, and find the coefficient of X to the sixth, Y, in the expansion of two X minus three Y, to the power seven.
+
+54
+00:07:09.433 --> 00:07:16.900
+Did you get negative one thousand, three hundred and forty-four? Well done. In the next video, we will learn how to divide polynomials.
+

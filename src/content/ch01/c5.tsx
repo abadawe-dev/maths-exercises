@@ -9,6 +9,7 @@ const content: Concept = {
   title: 'Inequalities',
   tagline: 'Prove that one expression is always at least as big as another, up to the famous AM-GM inequality.',
   accent: 'pink',
+  video: {id: 'ch01-v5', length: '10:57'},
   lessons: [
     /* ================================================================== 1-13 */
     {

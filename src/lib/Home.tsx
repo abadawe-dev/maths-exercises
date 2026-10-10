@@ -50,6 +50,7 @@ const ConceptCard: React.FC<{c: Concept}> = ({c}) => {
       </ul>
       <div className="concept-card-foot">
         <span>
+          {c.video ? `▶ ${c.video.length} video · ` : ''}
           {p.solved} / {p.total} solved
         </span>
         <span className="go">{p.solved ? 'Continue' : 'Start'} →</span>

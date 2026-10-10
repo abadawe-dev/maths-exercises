@@ -25,6 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      # The videos are too big for git: they live as assets on the "videos" release.
+      - name: Fetch videos
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download videos --repo "$GITHUB_REPOSITORY" --pattern '*.mp4' --dir public/videos
       - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

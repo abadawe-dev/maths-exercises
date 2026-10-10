@@ -1,7 +1,7 @@
 # Maths Practice
 
 Interactive practice pages for Grade 11 Mathematics, Chapter 1 **Algebraic Proofs** — companion to a set of
-explainer videos. Each concept page has short key-idea cards, a hands-on explorer, and exercises that check
+explainer videos. Each concept page has its video, short key-idea cards, a hands-on explorer, and exercises that check
 typed algebra, give hints and show worked solutions. Progress is stored only in the visitor's browser.
 
 **Live site:** https://abadawe-dev.github.io/maths-exercises/
@@ -23,11 +23,16 @@ npm test           # validates every exercise: TeX, reference answers, option li
 npm run build      # type-check + production build into dist/
 npm run shots -- binomial binomial:solve   # full-page screenshots into shots/
 node scripts/mobile.mjs                    # phone audit: layout + touch interaction on two phone sizes
+node scripts/video-check.mjs               # plays every video on desktop + phone (needs Google Chrome, built dist/)
 ```
 
 Static site: Vite + React + TypeScript, KaTeX for typesetting, mathjs for checking answers (typed expressions are
 compared with the reference numerically, so any equivalent form is accepted). Hash routing and a relative base
 path mean it runs from any GitHub Pages URL. Pushing to `main` deploys via `.github/workflows/deploy.yml`.
+
+The videos (`videos/ch01-vN.mp4`) are too large for git. They are assets on the
+[`videos` release](https://github.com/abadawe-dev/maths-exercises/releases/tag/videos); the deploy workflow downloads
+them into the site. Their narration is synthetic speech from a model licensed for research and non-commercial use only.
 
 ## Adding content
 

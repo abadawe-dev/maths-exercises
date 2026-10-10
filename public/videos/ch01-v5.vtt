@@ -1,0 +1,302 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:07.867
+Welcome back to chapter one: algebraic proofs. This video is all about inequalities: statements that say one thing is bigger than another.
+
+2
+00:00:08.267 --> 00:00:16.433
+We will pick up four tools for proving them, and finish with one of the most famous inequalities in all of mathematics: the A M G M inequality.
+
+3
+00:00:17.633 --> 00:00:25.233
+Imagine you are an engineer, designing a tiny capsule that carries medicine inside the body. You want it to hold as much as possible.
+
+4
+00:00:25.633 --> 00:00:30.933
+But the material for its shell is expensive, so the surface area is strictly limited.
+
+5
+00:00:31.333 --> 00:00:39.333
+Long and thin, or short and round? Every one of these shapes uses exactly the same amount of material, yet they hold different amounts.
+
+6
+00:00:39.733 --> 00:00:50.133
+An equation tells us exactly when two things are equal. An inequality tells us something more powerful: the limit of what is possible. The biggest, or the smallest, that a quantity can ever be.
+
+7
+00:00:51.333 --> 00:00:56.933
+So how do we prove that one expression is always greater than another? There is one master strategy.
+
+8
+00:00:57.333 --> 00:01:06.633
+Picture two numbers on a number line. Saying that the left-hand side is greater than the right-hand side, is the same as saying that the gap between them, left minus right, is positive.
+
+9
+00:01:07.033 --> 00:01:13.833
+So here is the plan. Calculate the left-hand side minus the right-hand side, and show that the result is greater than zero.
+
+10
+00:01:14.233 --> 00:01:21.767
+The same idea works in reverse. If we are told that A is greater than B, we can rewrite it as: A minus B is greater than zero.
+
+11
+00:01:22.967 --> 00:01:34.333
+Here is our first proof. We are told that A is greater than B, and X is greater than Y. Prove that two times, A X plus B Y, is greater than A plus B, times X plus Y.
+
+12
+00:01:34.733 --> 00:01:38.733
+Start with the left-hand side minus the right-hand side, and expand both brackets.
+
+13
+00:01:39.133 --> 00:01:45.800
+Collect the like terms, and only four are left: A X, minus A Y, minus B X, plus B Y.
+
+14
+00:01:46.200 --> 00:01:55.567
+Now factorise. Take A out of the first pair, and B out of the second, and a common bracket appears. The difference is A minus B, times X minus Y.
+
+15
+00:01:55.967 --> 00:02:06.633
+And here the conditions pay off. A minus B is positive, and X minus Y is positive. A positive times a positive is positive, so the inequality is proved.
+
+16
+00:02:07.833 --> 00:02:18.100
+A second one, more quickly. If X is greater than three, and Y is greater than negative five, prove that X Y plus five X, is greater than three Y plus fifteen.
+
+17
+00:02:18.500 --> 00:02:24.367
+Subtract, and factorise in pairs. The difference becomes X minus three, times Y plus five.
+
+18
+00:02:24.767 --> 00:02:32.133
+Both brackets are positive, so their product is positive. The recipe never changes: subtract, factorise, and check the signs.
+
+19
+00:02:33.333 --> 00:02:41.100
+But what if there are no conditions at all, and the inequality has to hold for every real number? Then we need a fact that is always true.
+
+20
+00:02:41.500 --> 00:02:49.267
+Here it is. The square of a real number is never negative. Square a positive number, or a negative one, and the result is positive.
+
+21
+00:02:49.667 --> 00:02:56.733
+The graph of X squared never dips below zero. It touches zero at exactly one point: where X itself is zero.
+
+22
+00:02:57.133 --> 00:03:07.300
+So the plan becomes: complete the square, to rewrite the difference as a perfect square. And because the sign is now greater than or equal to, we must also say when the two sides are equal.
+
+23
+00:03:08.500 --> 00:03:16.267
+Let's prove that A squared plus four B squared, is greater than or equal to four A B, for all real numbers A and B.
+
+24
+00:03:16.667 --> 00:03:26.267
+Take the left-hand side minus the right-hand side, and put the terms in order: A squared, minus four A B, plus four B squared.
+
+25
+00:03:26.667 --> 00:03:35.067
+Complete the square, and it collapses into A minus two B, all squared. A square is never negative, so the inequality is proved.
+
+26
+00:03:35.467 --> 00:03:41.967
+And when are the two sides equal? Only when that square is zero. In other words, when A equals two B.
+
+27
+00:03:43.167 --> 00:03:52.067
+Now one with two squares to complete. Prove that X squared plus Y squared, is greater than or equal to two times, X minus Y minus one.
+
+28
+00:03:52.467 --> 00:03:58.333
+Subtract, then group the X terms together, and the Y terms together, with a plus two left over.
+
+29
+00:03:58.733 --> 00:04:12.900
+Complete the square for each group. X squared minus two X becomes X minus one, squared, minus one. Y squared plus two Y becomes Y plus one, squared, minus one. The leftover numbers cancel perfectly.
+
+30
+00:04:13.300 --> 00:04:22.667
+We are left with a sum of two squares, which can never be negative. Equality needs both squares to be zero: X equals one, and Y equals negative one.
+
+31
+00:04:23.867 --> 00:04:30.433
+What about square roots? Subtracting them gets messy. So we use a different trick: compare the squares instead.
+
+32
+00:04:30.833 --> 00:04:39.333
+But be careful. Negative three is less than two, yet its square, nine, is greater than four. Squaring can flip the order.
+
+33
+00:04:39.733 --> 00:04:47.900
+With positive numbers, that never happens. A longer side always makes a bigger square. So comparing the squares is the same as comparing the numbers.
+
+34
+00:04:48.300 --> 00:04:55.833
+So for radicals: work out the left-hand side squared, minus the right-hand side squared. Then point out that both sides are positive.
+
+35
+00:04:57.033 --> 00:05:07.600
+Here is the textbook example. For positive A and B, prove that the square root of, A squared plus B squared, over two, is greater than or equal to A plus B, over two.
+
+36
+00:05:08.000 --> 00:05:18.333
+Square each side, and subtract. On the left the square root simply disappears. On the right we get A squared, plus two A B, plus B squared, all over four.
+
+37
+00:05:18.733 --> 00:05:26.833
+Put everything over four, and simplify. The top becomes A squared, minus two A B, plus B squared.
+
+38
+00:05:27.233 --> 00:05:34.433
+Another perfect square! It is A minus B, over two, all squared. So the difference of the squares is never negative.
+
+39
+00:05:34.833 --> 00:05:40.533
+Both sides are positive, so the original inequality follows. And equality holds when A equals B.
+
+40
+00:05:41.733 --> 00:05:47.200
+Now for the star of the show. There are two different ways to find the middle of two positive numbers.
+
+41
+00:05:47.600 --> 00:05:53.767
+The arithmetic mean is the usual average: add them, and divide by two. For two and eight, that gives five.
+
+42
+00:05:54.167 --> 00:06:06.500
+The geometric mean multiplies them, and takes the square root. Two times eight is sixteen, and the square root of sixteen is four. It is the side of a square with the same area as a two by eight rectangle.
+
+43
+00:06:06.900 --> 00:06:18.367
+Five beats four. And that is no accident. For any positive A and B, the arithmetic mean is greater than or equal to the geometric mean. This is the A M G M inequality.
+
+44
+00:06:18.767 --> 00:06:27.900
+Multiply both sides by two, and we get the form we will use most: A plus B is greater than or equal to two root A B.
+
+45
+00:06:29.100 --> 00:06:38.000
+Here is a beautiful picture of why it is true. Draw a line, and split it into two pieces, of lengths A and B. Then draw a semicircle on top.
+
+46
+00:06:38.400 --> 00:06:44.100
+The radius is half of the whole line. That is A plus B, over two: the arithmetic mean.
+
+47
+00:06:44.500 --> 00:06:52.367
+Now stand a vertical line on the split point, reaching up to the curve. Its height turns out to be exactly the square root of A B: the geometric mean.
+
+48
+00:06:52.767 --> 00:06:57.567
+Slide the split point from side to side. The vertical line can never be taller than the radius.
+
+49
+00:06:57.967 --> 00:07:03.100
+And the two are equal at just one place: the very centre, where A equals B.
+
+50
+00:07:04.300 --> 00:07:11.833
+The algebra is just as neat. Start with something we already know: root A minus root B, all squared, is never negative.
+
+51
+00:07:12.233 --> 00:07:17.533
+Expand it. A, minus two root A B, plus B, is greater than or equal to zero.
+
+52
+00:07:17.933 --> 00:07:30.500
+Move the middle term across, and there it is. A plus B is greater than or equal to two root A B. Equality holds when root A equals root B, which means A equals B.
+
+53
+00:07:31.700 --> 00:07:43.233
+The A M G M inequality really shines when the product of the two terms is a constant. Watch. For positive A and B, prove that B over A, plus A over B, is at least two.
+
+54
+00:07:43.633 --> 00:07:53.100
+First, and the textbook insists that you always write this: B over A, and A over B, are both positive. That is what allows us to use the inequality.
+
+55
+00:07:53.500 --> 00:07:58.967
+Now apply it. The sum is greater than or equal to two times the square root of the product.
+
+56
+00:07:59.367 --> 00:08:08.500
+And the product, B over A times A over B, is simply one. Everything cancels. Two times root one is two, and we are done.
+
+57
+00:08:08.900 --> 00:08:17.467
+Equality holds when the two terms are equal. That gives B squared equals A squared, and since both are positive, A equals B.
+
+58
+00:08:18.667 --> 00:08:26.267
+Let's build on that. Prove that A plus B, times, one over A plus one over B, is greater than or equal to four.
+
+59
+00:08:26.667 --> 00:08:35.733
+Expand the brackets. A times one over A is one. B times one over B is one. And in between, we get A over B, and B over A.
+
+60
+00:08:36.133 --> 00:08:45.833
+So the whole expression is A over B, plus B over A, plus two. And we have just shown that the first two terms add up to at least two.
+
+61
+00:08:46.233 --> 00:08:52.400
+Two plus two makes four. And once again, equality holds when A equals B.
+
+62
+00:08:53.600 --> 00:09:00.400
+Now, back to finding the best design. A rectangle has a perimeter of two hundred centimetres. How large can its area be?
+
+63
+00:09:00.800 --> 00:09:10.400
+Call the sides L and W. Twice L plus twice W is two hundred, so L plus W is one hundred. The sum is fixed.
+
+64
+00:09:10.800 --> 00:09:18.567
+By the A M G M inequality, the square root of L W, is at most L plus W over two, which is fifty.
+
+65
+00:09:18.967 --> 00:09:25.633
+Square both sides. The area, L times W, is at most two thousand five hundred square centimetres.
+
+66
+00:09:26.033 --> 00:09:33.233
+And equality holds when L equals W. The best rectangle is a square, fifty by fifty. The inequality hands us the limit.
+
+67
+00:09:34.433 --> 00:09:41.633
+One warning before we finish. The A M G M inequality only works for positive numbers. What happens if we ignore that?
+
+68
+00:09:42.033 --> 00:09:49.733
+Take A equals negative two, and B equals negative eight. Their arithmetic mean is negative ten over two, which is negative five.
+
+69
+00:09:50.133 --> 00:09:54.800
+But their product is positive sixteen, so the geometric mean comes out as four.
+
+70
+00:09:55.200 --> 00:10:01.533
+Negative five is certainly not greater than four. The inequality fails. So always check the conditions first.
+
+71
+00:10:02.733 --> 00:10:09.400
+Let's recap our four tools. One: to prove an inequality, subtract, and show that the difference is positive.
+
+72
+00:10:09.800 --> 00:10:21.000
+Two: for all real numbers, complete the square, because squares are never negative. Three: with square roots, compare the squares, after checking that both sides are positive.
+
+73
+00:10:21.400 --> 00:10:32.600
+And four: the A M G M inequality. For positive numbers, A plus B is greater than or equal to two root A B, with equality when A equals B.
+
+74
+00:10:33.000 --> 00:10:44.200
+Now it is your turn. Pause the video. For positive A and B, prove that B over three A, plus twelve A over B, is greater than or equal to four. And find when equality holds.
+
+75
+00:10:44.600 --> 00:10:56.367
+Here is the key step. The product of the two terms is four, so the sum is at least two root four, which is four. Equality holds when B equals six A. Great work, and see you next time.
+

@@ -34,6 +34,27 @@ describe('answer checker', () => {
     expect(check('x^2+2x+1', 'x^2+2x+1', 'noParens').ok).toBe(true);
     expect(check('(x^2-4)/((3x+1)(x+2))', '(x-2)/(3x+1)', 'simplified').ok).toBe(false);
     expect(check('2y', '2x').ok).toBe(false);
+  });
+  it('insists on fully cancelled fractions when asked to simplify', () => {
+    const s = (raw: string, answer: string) => check(raw, answer, 'simplified').ok;
+    expect(s('6y^2/(20x)', '3y^2/(10x)')).toBe(false);
+    expect(s('3xy^2/(10x^2)', '3y^2/(10x)')).toBe(false);
+    expect(s('3y^2/(10x)', '3y^2/(10x)')).toBe(true);
+    expect(s('(3/10)y^2/x', '3y^2/(10x)')).toBe(true);
+    expect(s('0.3y^2/x', '3y^2/(10x)')).toBe(true);
+    expect(s('(2x+4)/(2x-8)', '(x+2)/(x-4)')).toBe(false);
+    expect(s('(x+2)(x-1)/((x-4)(x-1))', '(x+2)/(x-4)')).toBe(false);
+    expect(s('(x^2+x-2)/(x^2-5x+4)', '(x+2)/(x-4)')).toBe(false);
+    expect(s('(-x-2)/(4-x)', '(x+2)/(x-4)')).toBe(true);
+    expect(s('x/(x-3) * (x+1)/(x+1)', 'x/(x-3)')).toBe(false);
+    expect(s('2x/4', 'x/2')).toBe(false);
+    expect(s('x/2', 'x/2')).toBe(true);
+    expect(s('(1/2)x', 'x/2')).toBe(true);
+    expect(s('(xy+x^2)/(y^2+xy)', 'x/y')).toBe(false);
+    expect(s('(a-b)(c-d)', '(a-b)(c-d)')).toBe(true);
+    expect(s('2x/(x^2+1)', '2x/(x^2+1)')).toBe(true);
+    expect(s('8sqrt(ab)', '8sqrt(ab)')).toBe(true);
+    expect(s('(x-3)/(2x^2-5x+2)', '(x-3)/((x-2)(2x-1))')).toBe(true);
     expect(check('2x+', '2x').ok).toBe(false);
   });
   it('reads implicit multiplication', () => {

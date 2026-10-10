@@ -9,6 +9,7 @@ export const c2: Concept = {
   title: 'Polynomial Division',
   tagline: 'Divide one polynomial by another with long division, and connect dividend, divisor, quotient and remainder.',
   accent: 'amber',
+  video: {id: 'ch01-v2', length: '7:49'},
   lessons: [
     {
       id: '1-4',

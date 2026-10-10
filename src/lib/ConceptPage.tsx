@@ -54,6 +54,27 @@ const LessonSection: React.FC<{concept: Concept; lesson: Lesson}> = ({concept, l
   </section>
 );
 
+// The .mp4 files are release assets added at deploy time, so the section hides itself if one is missing.
+const Watch: React.FC<{concept: Concept}> = ({concept}) => {
+  const [missing, setMissing] = React.useState(false);
+  const v = concept.video;
+  if (!v || missing) return null;
+  const base = `videos/${v.id}`;
+  return (
+    <section className="watch" aria-label="Video">
+      <div className="watch-head">
+        <span className="chip chip-explore">Watch first</span>
+        <h2>The idea in {v.length.split(':')[0]} minutes</h2>
+        <p>A narrated walk through this concept. Watch it, then try the explorers and exercises below.</p>
+      </div>
+      <video controls playsInline preload="none" poster={`${base}.jpg`} onError={() => setMissing(true)}>
+        <source src={`${base}.mp4`} type="video/mp4" onError={() => setMissing(true)} />
+        <track kind="captions" srcLang="en" label="English" src={`${base}.vtt`} />
+      </video>
+    </section>
+  );
+};
+
 export const ConceptPage: React.FC<{concept: Concept; all: Concept[]}> = ({concept, all}) => {
   const p = useConceptProgress(concept);
   const store = useSolved();
@@ -77,6 +98,8 @@ export const ConceptPage: React.FC<{concept: Concept; all: Concept[]}> = ({conce
         </div>
         <Ring value={p.value} size={120} />
       </header>
+
+      <Watch key={concept.id} concept={concept} />
 
       <nav className="lesson-nav" aria-label="Lessons">
         {concept.lessons.map((l) => {

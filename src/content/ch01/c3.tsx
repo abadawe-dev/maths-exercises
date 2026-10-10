@@ -11,6 +11,7 @@ export const c3: Concept = {
   title: 'Rational Expressions',
   tagline: 'Reduce, multiply, divide, add and subtract algebraic fractions, and untangle compound fractions.',
   accent: 'green',
+  video: {id: 'ch01-v3', length: '8:50'},
   lessons: [
     // ------------------------------------------------------------------------------------ 1-6
     {

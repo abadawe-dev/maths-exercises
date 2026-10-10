@@ -11,6 +11,7 @@ export const c4: Concept = {
   title: 'Identities & Proofs',
   tagline: 'Tell identities from equations, find unknown constants, and prove that two expressions are always equal.',
   accent: 'violet',
+  video: {id: 'ch01-v4', length: '9:03'},
   lessons: [
     /* ------------------------------------------------------------ 1-9 */
     {
@@ -223,7 +224,7 @@ export const c4: Concept = {
           id: 'reflect-hole',
           type: 'choice',
           level: 'practice',
-          source: 'Lesson 1-9 · Reflect',
+          source: 'Lesson 1-8 · Reflect',
           prompt: T`Is $\dfrac{x^2-16}{x-4}=x+4$ an identity in $x$?`,
           options: [
             T`Yes, for every real $x$ with no exceptions.`,

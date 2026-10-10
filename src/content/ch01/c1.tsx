@@ -9,6 +9,7 @@ export const c1: Concept = {
   title: 'Binomial & Multinomial Theorems',
   tagline: 'Expand brackets raised to any power, and pick out any single term, without multiplying them out by hand.',
   accent: 'cyan',
+  video: {id: 'ch01-v1', length: '7:18'},
   lessons: [
     {
       id: '1-1',

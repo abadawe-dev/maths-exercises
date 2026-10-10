@@ -79,5 +79,7 @@ export type Concept = {
   title: string;
   tagline: string;
   accent: Accent;
+  /** Companion explainer video: files videos/<id>.mp4, .jpg (poster) and .vtt (captions). */
+  video?: {id: string; length: string};
   lessons: Lesson[];
 };

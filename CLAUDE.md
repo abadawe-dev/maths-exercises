@@ -22,6 +22,13 @@ Companion to explainer videos made in a separate project; the look (dark aurora,
 - `Field.answer` is in typed syntax (`(x+2)/(x(x-1))`, `sqrt(ab)`, `2x^2+3x+8`). Equivalent forms are accepted, so
   add `rule: 'noParens'` for "expand", `rule: 'simplified'` for "simplify/reduce", `rule: 'number'` for numbers —
   otherwise retyping the question would be marked correct.
+  `simplified` rejects any fraction that still has a common factor top and bottom (numeric or algebraic), and
+  answers much longer than the reference; the reference itself must therefore be in lowest terms.
+- Videos: `Concept.video = {id, length}` shows `videos/<id>.mp4` at the top of the page, with `public/videos/<id>.jpg`
+  (poster) and `.vtt` (captions) from git. The `.mp4` files are not in git: they are assets on the GitHub release
+  tagged `videos`, fetched by the deploy workflow. To change one:
+  `gh release upload videos public/videos/<id>.mp4 --clobber`, then re-run the workflow. For local work, copy the
+  files into `public/videos/`. `node scripts/video-check.mjs [url]` plays each one on desktop and phone.
 - Every exercise needs a full worked `solution`; most need 1–3 `hints` that go from nudge to near-answer.
   `choice` distractors should be real mistakes, each with `feedback` explaining it.
 - Order within a lesson: warm-up → practice → challenge. Cite the textbook in `source`

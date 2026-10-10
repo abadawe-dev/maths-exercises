@@ -1,0 +1,222 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:09.000
+Welcome back to chapter one: algebraic proofs. In this video, we meet rational expressions, which are simply fractions that have algebra inside them.
+
+2
+00:00:09.400 --> 00:00:18.767
+We will learn how to simplify them, how to multiply and divide them, how to add and subtract them, and finally, how to untangle fractions that live inside other fractions.
+
+3
+00:00:19.967 --> 00:00:27.500
+Imagine a patient swallowing a tablet. As the body absorbs the medicine, the amount of drug in the blood climbs quickly to a peak.
+
+4
+00:00:27.900 --> 00:00:32.300
+Then the kidneys and the liver begin to filter it out, and the concentration slowly drops away.
+
+5
+00:00:32.700 --> 00:00:41.200
+To describe a curve like this, scientists use a rational expression. That is a fraction with a polynomial on the top, and a polynomial on the bottom.
+
+6
+00:00:41.600 --> 00:00:53.867
+And when doctors combine treatments, or change a dose, they have to multiply, divide, add and subtract these fractions. So let's learn how, starting with the most important skill of all: reducing.
+
+7
+00:00:55.067 --> 00:01:02.200
+You already know how to reduce a fraction made of numbers. Take six eighths. Six is two times three, and eight is two times four.
+
+8
+00:01:02.600 --> 00:01:08.933
+The two is a factor of the top, and of the bottom. So we can cancel it, which leaves three quarters.
+
+9
+00:01:09.333 --> 00:01:18.233
+Rational expressions work in exactly the same way. Look at this one. X minus one, times X minus three, over, X, times X minus three.
+
+10
+00:01:18.633 --> 00:01:25.767
+The bracket, X minus three, is a common factor of the top and the bottom. Cancel it, and we are left with X minus one, over X.
+
+11
+00:01:26.167 --> 00:01:32.667
+Nothing more can be cancelled. So we call this an irreducible rational expression. It is the simplest form.
+
+12
+00:01:33.867 --> 00:01:43.633
+Usually the common factors are hidden, so the first job is always to factorise. Here is a gentle start. Twelve A, B to the fifth, over, nine A cubed, B squared.
+
+13
+00:01:44.033 --> 00:01:55.000
+Twelve and nine share a factor of three. One A cancels, leaving A squared underneath. And B squared cancels, leaving B cubed on top. The answer is four B cubed, over three A squared.
+
+14
+00:01:55.400 --> 00:02:05.267
+Now a harder one. X squared minus four, over, three X squared, plus seven X, plus two. At first sight, nothing cancels.
+
+15
+00:02:05.667 --> 00:02:15.367
+So we factorise. The top is a difference of two squares: X plus two, times X minus two. The bottom splits into three X plus one, times X plus two.
+
+16
+00:02:15.767 --> 00:02:24.100
+Now the common factor, X plus two, is easy to see. Cancel it, and we get X minus two, over, three X plus one.
+
+17
+00:02:25.300 --> 00:02:39.000
+Here is the most common mistake in this whole topic. Look at X plus six, over, X plus two. It is very tempting to cross out the two X’s, and say the answer is six over two, which is three.
+
+18
+00:02:39.400 --> 00:02:48.700
+Let's test that with a number. Put X equal to two. The top becomes eight, the bottom becomes four, and eight over four is two. Not three. So that cancelling was wrong.
+
+19
+00:02:49.100 --> 00:03:01.367
+The reason is that these X’s are terms, joined on with a plus sign. They are not factors. If the X’s were multiplied instead, as in six X over two X, then cancelling would be perfectly fine.
+
+20
+00:03:01.767 --> 00:03:05.700
+So remember the rule. Cancel factors. Never cancel terms.
+
+21
+00:03:06.900 --> 00:03:16.367
+Now for multiplying and dividing. With ordinary fractions, dividing is the same as multiplying by the reciprocal. In other words, flip the second fraction upside down, and multiply.
+
+22
+00:03:16.767 --> 00:03:30.867
+Here is the textbook's example. X squared, minus four X, minus five, over, two X squared, plus five X, plus two. Divided by, X squared, minus X, minus twenty, over, two X squared, minus five X, minus three.
+
+23
+00:03:31.267 --> 00:03:36.400
+Step one. Change the division into a multiplication, by flipping the second fraction.
+
+24
+00:03:36.800 --> 00:03:49.067
+Step two. Factorise all four pieces. For example, X squared, minus four X, minus five, becomes X plus one, times X minus five. The other three factorise in the same way.
+
+25
+00:03:49.467 --> 00:03:57.867
+Step three. Cancel the common factors. X minus five sits on a top and on a bottom, so it goes. And so does two X plus one.
+
+26
+00:03:58.267 --> 00:04:10.833
+What remains is X plus one, times X minus three, over, X plus two, times X plus four. Leave it exactly like this. There is no need to expand the brackets.
+
+27
+00:04:12.033 --> 00:04:20.700
+Adding and subtracting need a different idea. Think about one half, plus one third. We cannot add them directly, because the pieces are different sizes.
+
+28
+00:04:21.100 --> 00:04:30.400
+So we cut both into sixths. One half is three sixths, and one third is two sixths. Now the pieces match, and together they make five sixths.
+
+29
+00:04:30.800 --> 00:04:39.933
+Algebra works the same way. To add one over X plus one, and one over X minus two, we multiply the top and bottom of each fraction by the bracket it is missing.
+
+30
+00:04:40.333 --> 00:04:49.533
+Now both fractions share the same denominator, so we can add the numerators. X minus two, plus X plus one, makes two X minus one.
+
+31
+00:04:49.933 --> 00:05:02.033
+But beware of a tempting shortcut. Never add the tops together, and the bottoms together. One half plus one third would become two fifths, which is smaller than the half we started with. That cannot be right.
+
+32
+00:05:03.233 --> 00:05:13.967
+Let's put everything together, with an example from the textbook. X plus four, over, X squared minus two X. Minus, three, over, X squared, minus three X, plus two.
+
+33
+00:05:14.367 --> 00:05:23.900
+First, factorise the denominators. X squared minus two X, is X, times X minus two. And the other one is X minus one, times X minus two.
+
+34
+00:05:24.300 --> 00:05:36.567
+Second, find a common denominator. Both already contain X minus two. The first fraction is missing X minus one, and the second is missing X. So we multiply each numerator by its missing piece.
+
+35
+00:05:36.967 --> 00:05:49.767
+Third, calculate only the numerator. X plus four, times X minus one, is X squared, plus three X, minus four. Take away three X, and we are left with X squared minus four.
+
+36
+00:05:50.167 --> 00:05:57.233
+Fourth, factorise the numerator. X squared minus four, is X minus two, times X plus two.
+
+37
+00:05:57.633 --> 00:06:02.300
+Fifth, always reduce. X minus two cancels, top and bottom.
+
+38
+00:06:02.700 --> 00:06:11.033
+The final answer is X plus two, over, X, times X minus one. And once again, we do not expand the denominator.
+
+39
+00:06:12.233 --> 00:06:20.100
+Our last topic is compound fractions. These are fractions that have smaller fractions hiding inside the numerator or the denominator.
+
+40
+00:06:20.500 --> 00:06:27.633
+They look frightening, but one trick tames them all. Multiply the top and the bottom of the big fraction by the same expression.
+
+41
+00:06:28.033 --> 00:06:44.433
+Here is why that works. Take one half, over, three quarters. Multiply the top and the bottom by four. The top becomes two, the bottom becomes three, and the little fractions have vanished. The value has not changed, because we really just multiplied by one.
+
+42
+00:06:45.633 --> 00:06:57.233
+Try it with algebra. One, over, one minus, one over X minus one. The little denominator is X minus one, so we multiply the top and the bottom by X minus one.
+
+43
+00:06:57.633 --> 00:07:08.133
+On top, we simply get X minus one. Underneath, one times X minus one, is X minus one. And the little fraction cancels down to just one.
+
+44
+00:07:08.533 --> 00:07:18.467
+So the bottom is X minus one, minus one, which is X minus two. The answer is X minus one, over, X minus two. The compound fraction has gone.
+
+45
+00:07:19.667 --> 00:07:28.967
+Here is a bigger one. On top, one over one minus X, plus, one over one plus X. Underneath, the same two fractions, but subtracted.
+
+46
+00:07:29.367 --> 00:07:35.933
+The little denominators are one minus X, and one plus X. So we multiply the top and the bottom by both of them together.
+
+47
+00:07:36.333 --> 00:07:40.100
+Each little fraction cancels with one of the brackets, and leaves the other bracket behind.
+
+48
+00:07:40.500 --> 00:07:49.867
+So the top becomes one plus X, plus, one minus X. And the bottom becomes one plus X, minus, one minus X.
+
+49
+00:07:50.267 --> 00:08:02.767
+On top, the X’s cancel, leaving two. Underneath, the ones cancel, leaving two X. And two over two X, reduces to one over X. All of that complexity, collapsed into something tiny.
+
+50
+00:08:03.967 --> 00:08:12.300
+Let's recap. To reduce a rational expression, factorise first, then cancel the common factors. Never cancel terms.
+
+51
+00:08:12.700 --> 00:08:17.367
+To multiply or divide, flip the divisor, factorise, and cancel.
+
+52
+00:08:17.767 --> 00:08:24.167
+To add or subtract, build a common denominator, combine the numerators, then factorise and reduce.
+
+53
+00:08:24.567 --> 00:08:29.467
+And for a compound fraction, multiply the top and the bottom by the same expression.
+
+54
+00:08:29.867 --> 00:08:37.567
+Now it is your turn. Pause the video, and simplify this. X, over X minus one. Minus, two, over X squared minus one.
+
+55
+00:08:37.967 --> 00:08:49.033
+Did you get X plus two, over, X plus one? Well done. In the next video, we will explore identities, and learn how to prove that two expressions are always equal.
+
