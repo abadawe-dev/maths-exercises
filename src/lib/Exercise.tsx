@@ -210,7 +210,7 @@ const ProofBody: React.FC<{ex: ProofExercise; onSolved: () => void}> = ({ex, onS
         ))}
       </ol>
       {finished ? (
-        <p className="verdict right">✓ Proof complete.</p>
+        <p className="verdict right">✓ Complete.</p>
       ) : (
         <div className="proof-step">
           <p className="proof-goal">

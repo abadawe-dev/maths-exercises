@@ -28,8 +28,13 @@ try {
       await page.waitForLoadState('networkidle');
       await page.waitForTimeout(500);
       if (mode === 'solve') {
-        for (const b of await page.getByRole('button', {name: 'Show solution'}).all()) await b.click();
-        for (let i = 0; i < 4; i++) for (const b of await page.getByRole('button', {name: /hint/i}).all()) await b.click().catch(() => {});
+        // each click renames or removes the button, so always take the first one still on offer
+        for (let k = 0; k < 400 && (await page.getByRole('button', {name: /hint/i}).count()); k++) {
+          await page.getByRole('button', {name: /hint/i}).first().click({timeout: 1500}).catch(() => {});
+        }
+        for (let k = 0; k < 200 && (await page.getByRole('button', {name: 'Show solution'}).count()); k++) {
+          await page.getByRole('button', {name: 'Show solution'}).first().click({timeout: 1500}).catch(() => {});
+        }
       }
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       if (overflow > 1) errors.push(`${route} ${name}: page scrolls sideways by ${overflow}px`);

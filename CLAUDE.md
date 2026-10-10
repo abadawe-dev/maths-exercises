@@ -32,4 +32,5 @@ Companion to explainer videos made in a separate project; the look (dark aurora,
 ## Checks before finishing
 
 `npx tsc --noEmit`, `npx vitest run`, then `node scripts/shots.mjs <route> <route>:solve` and look at the PNGs in
-`shots/` (desktop and mobile) for overflow, clipping and broken maths.
+`shots/` (desktop and mobile) for overflow, clipping and broken maths. Finally `node scripts/mobile.mjs <route>` must
+report "mobile audit clean" (touch interaction and layout on two phone sizes); look at `shots/mobile/` too.

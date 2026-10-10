@@ -22,6 +22,7 @@ npm run dev        # local dev server
 npm test           # validates every exercise: TeX, reference answers, option lists
 npm run build      # type-check + production build into dist/
 npm run shots -- binomial binomial:solve   # full-page screenshots into shots/
+node scripts/mobile.mjs                    # phone audit: layout + touch interaction on two phone sizes
 ```
 
 Static site: Vite + React + TypeScript, KaTeX for typesetting, mathjs for checking answers (typed expressions are

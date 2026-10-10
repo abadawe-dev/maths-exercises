@@ -139,7 +139,7 @@ main { width: min(1120px, 100% - 40px); margin: 0 auto; padding: 28px 0 60px; }
 .lesson-head p { color: var(--muted); margin-top: 6px; max-width: 62ch; }
 
 .ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
-.idea { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 16px; padding: 18px 20px; }
+.idea { min-width: 0; overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 16px; padding: 18px 20px; }
 .idea h3 { font-size: 1.05rem; color: var(--accent); margin-bottom: 8px; letter-spacing: 0; }
 .idea p { font-size: 0.98rem; }
 .idea p + p { margin-top: 6px; }
@@ -256,4 +256,13 @@ input[type='range'] { width: 100%; accent-color: var(--accent); height: 28px; cu
   .pager { grid-template-columns: 1fr; }
   .lesson-nav a { flex: none; }
   .lesson-nav-title { display: none; }
+}
+
+/* Let long display maths wrap at operators instead of running off a narrow screen. */
+.katex-display > .katex { white-space: normal; }
+.katex-display > .katex > .katex-html > .base { margin: 0.35em 0; }
+.solution p, .hints li, .exercise-prompt, .idea p, .proof-line { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .concept-hero { padding: 3vh 0 22px; gap: 14px; }
+  .hero { padding: 5vh 0 30px; }
 }
